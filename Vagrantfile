@@ -14,12 +14,9 @@ Vagrant::Config.run do |config|
     db_config.vm.forward_port 3306, 3306
     db_config.vm.network :hostonly, own_ip
 	db_config.vm.provision :chef_solo do |chef|     
-	  chef.cookbooks_path = ["cookbooks","cookbooks-src"]                                                                                                                      
-	  chef.add_recipe "apt"  
-	  chef.add_recipe "build-essential"
-	  chef.add_recipe "mysql::client"
-	  chef.add_recipe "mysql::server"
-	  
+	  chef.cookbooks_path = ["cookbooks"]                                                                                                                      
+	  chef.roles_path = ["roles"]
+	  chef.add_role("mysql_master")
 	  chef.json = {
        :mysql => { :server_root_password => 'test',
                    :allow_remote_root => true,
@@ -37,12 +34,9 @@ Vagrant::Config.run do |config|
 	db_config.vm.forward_port 3306, 3307
 	db_config.vm.network :hostonly, own_ip
 	db_config.vm.provision :chef_solo do |chef|     
-	  chef.cookbooks_path = ["cookbooks","cookbooks-src"]                                                                                                                      
-	  chef.add_recipe "apt"  
-	  chef.add_recipe "build-essential"
-	  chef.add_recipe "mysql::client"
-	  chef.add_recipe "mysql::server"
-	  
+	  chef.cookbooks_path = ["cookbooks"]                                                                                                                      
+	  chef.roles_path = ["roles"]
+	  chef.add_role("mysql_slave")
       chef.json = {
 	     :mysql => { :server_root_password => 'test',
                      :allow_remote_root => true,
