@@ -1,0 +1,4 @@
+# Grant replication for a slave user.
+CREATE USER 'repl'@'%' IDENTIFIED BY 'slavepass';CREATE USER 'repl'@'%' IDENTIFIED BY 'slavepass';
+GRANT REPLICATION SLAVE ON *.* TO 'repl' identified by 'slavepass';
+CREATE DATABASE replication_test;
