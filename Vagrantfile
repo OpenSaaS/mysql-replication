@@ -26,8 +26,6 @@ Vagrant::Config.run do |config|
 	end
   end
 
-
-
   config.vm.define :db2 do |db_config|
     own_ip = "192.168.1.11"
 	db_config.vm.box = "myubuntu-11.10"
